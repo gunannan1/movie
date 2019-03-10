@@ -1,7 +1,8 @@
 package com.dubbo.movie.api.alipay;
 
-import com.stylefeng.guns.api.alipay.vo.AliPayInfoVO;
-import com.stylefeng.guns.api.alipay.vo.AliPayResultVO;
+
+import com.dubbo.movie.vo.alipay.AliPayInfoVO;
+import com.dubbo.movie.vo.alipay.AliPayResultVO;
 
 public interface AliPayServiceAPI {
 

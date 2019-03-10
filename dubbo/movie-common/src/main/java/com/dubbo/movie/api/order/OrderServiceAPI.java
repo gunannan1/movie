@@ -1,7 +1,7 @@
 package com.dubbo.movie.api.order;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.api.order.vo.OrderVO;
+import com.dubbo.movie.vo.order.OrderVO;
 
 public interface OrderServiceAPI {
 

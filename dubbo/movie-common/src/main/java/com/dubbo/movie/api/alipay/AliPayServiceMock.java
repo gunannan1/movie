@@ -1,10 +1,11 @@
 package com.dubbo.movie.api.alipay;
 
-import com.stylefeng.guns.api.alipay.vo.AliPayInfoVO;
-import com.stylefeng.guns.api.alipay.vo.AliPayResultVO;
 
-/*
-    业务降级方法
+import com.dubbo.movie.vo.alipay.AliPayInfoVO;
+import com.dubbo.movie.vo.alipay.AliPayResultVO;
+
+/**
+ * 业务降级方法
  */
 public class AliPayServiceMock implements AliPayServiceAPI{
     @Override

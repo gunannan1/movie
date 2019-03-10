@@ -1,7 +1,7 @@
 package com.dubbo.movie.api.cinema;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.api.cinema.vo.*;
+import com.dubbo.movie.vo.cinema.*;
 
 import java.util.List;
 

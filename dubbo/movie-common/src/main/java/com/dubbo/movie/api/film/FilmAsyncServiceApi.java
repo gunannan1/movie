@@ -1,6 +1,9 @@
 package com.dubbo.movie.api.film;
 
-import com.stylefeng.guns.api.film.vo.*;
+
+import com.dubbo.movie.vo.film.ActorVO;
+import com.dubbo.movie.vo.film.FilmDescVO;
+import com.dubbo.movie.vo.film.ImgVO;
 
 import java.util.List;
 

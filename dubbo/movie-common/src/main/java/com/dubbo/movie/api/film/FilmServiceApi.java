@@ -1,7 +1,7 @@
 package com.dubbo.movie.api.film;
 
-import com.stylefeng.guns.api.film.vo.*;
 
+import com.dubbo.movie.vo.film.*;
 import java.util.List;
 
 public interface FilmServiceApi {

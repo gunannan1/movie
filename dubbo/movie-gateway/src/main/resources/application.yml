@@ -1,0 +1,27 @@
+server:
+ port: 8080
+spring:
+ application:
+  name: movie-gateway
+ dubbo:
+  server: true
+  registry: zookeeper://localhost:2181
+ datasource:
+  url: jdbc:mysql://localhost:3306/movie?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+  username: root
+  password: 123456
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+
+
+jwt:
+ header: Authorization   #http请求头所需要的字段
+ secret: mySecret        #jwt秘钥
+ expiration: 604800      #7天 单位:秒
+ auth-path: auth         #认证请求的路径
+ md5-key: randomKey      #md5加密混淆key
+ ignore-url: /user/register,/user/check,/film   #忽略列表
+
+rest:
+ auth-open: true #jwt鉴权机制是否开启(true或者false)
+ sign-open: true #签名机制是否开启(true或false)

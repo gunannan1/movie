@@ -1,7 +1,8 @@
 package com.dubbo.movie.api.user;
 
-import com.stylefeng.guns.api.user.vo.UserInfoModel;
-import com.stylefeng.guns.api.user.vo.UserModel;
+
+import com.dubbo.movie.vo.user.UserInfoModel;
+import com.dubbo.movie.vo.user.UserModel;
 
 public interface UserAPI {
 

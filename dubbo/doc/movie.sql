@@ -251,7 +251,9 @@ CREATE TABLE user(
    biography VARCHAR(200) COMMENT '个人介绍',
    life_state INT COMMENT '生活状态 0-单身，1-热恋中，2-已婚，3-为人父母',
    begin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-   update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+   update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+   UNIQUE KEY `user_name` (`user_name`) USING BTREE
+
 ) COMMENT '用户表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 insert into user(user_name,user_pwd,nick_name,user_sex,birthday,email,user_phone,address,head_url,life_state,biography) values('admin','0192023a7bbd73250516f069df18b500','隔壁泰山',0,'2018-07-31','admin@mooc.com','13888888888','北京市海淀区朝阳北路中南海国宾馆','films/img/head-img.jpg',0,'没有合适的伞，我宁可淋着雨');
