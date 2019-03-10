@@ -28,6 +28,7 @@ public class AuthController {
 
     @RequestMapping(value = "/auth")
     public ResponseVO createAuthenticationToken(AuthRequest authRequest) {
+        System.out.println("auth 发起请求");
 
         boolean validate = true;
 
@@ -42,6 +43,7 @@ public class AuthController {
             final String randomKey = jwtTokenUtil.getRandomKey();
             final String token = jwtTokenUtil.generateToken(""+userId, randomKey);
             // 返回值
+            System.out.println(token);
             return ResponseVO.success(new AuthResponse(token, randomKey));
         } else {
             return ResponseVO.serviceFail("用户名或密码错误");
