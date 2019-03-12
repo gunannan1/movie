@@ -22,43 +22,43 @@ INSERT INTO banner(banner_address,banner_url) VALUES('banners/c1a713981cabef02c8
 
 
 -- ----------------------------
--- Table structure for type_dict
+-- Table structure for category_dict
 -- ----------------------------
-DROP TABLE IF EXISTS `type_dict`;
-CREATE TABLE `type_dict`(
+DROP TABLE IF EXISTS `category_dict`;
+CREATE TABLE `category_dict`(
   id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键编号',
   show_name VARCHAR(100) COMMENT '显示名称'
 ) COMMENT '电影类型信息表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 
 -- ----------------------------
--- Records of type_dict
+-- Records of category_dict
 -- ----------------------------
-INSERT INTO type_dict(id,show_name) values(99,'全部');
-INSERT INTO type_dict(id,show_name) values(1,'爱情');
-INSERT INTO type_dict(id,show_name) values(2,'喜剧');
-INSERT INTO type_dict(id,show_name) values(3,'动画');
-INSERT INTO type_dict(id,show_name) values(4,'剧情');
-INSERT INTO type_dict(id,show_name) values(5,'恐怖');
-INSERT INTO type_dict(id,show_name) values(6,'惊悚');
-INSERT INTO type_dict(id,show_name) values(7,'科幻');
-INSERT INTO type_dict(id,show_name) values(8,'动作');
-INSERT INTO type_dict(id,show_name) values(9,'悬疑');
-INSERT INTO type_dict(id,show_name) values(10,'犯罪');
-INSERT INTO type_dict(id,show_name) values(11,'冒险');
-INSERT INTO type_dict(id,show_name) values(12,'战争');
-INSERT INTO type_dict(id,show_name) values(13,'奇幻');
-INSERT INTO type_dict(id,show_name) values(14,'运动');
-INSERT INTO type_dict(id,show_name) values(15,'家庭');
-INSERT INTO type_dict(id,show_name) values(16,'古装');
-INSERT INTO type_dict(id,show_name) values(17,'武侠');
-INSERT INTO type_dict(id,show_name) values(18,'西部');
-INSERT INTO type_dict(id,show_name) values(19,'历史');
-INSERT INTO type_dict(id,show_name) values(20,'传记');
-INSERT INTO type_dict(id,show_name) values(21,'歌舞');
-INSERT INTO type_dict(id,show_name) values(22,'短片');
-INSERT INTO type_dict(id,show_name) values(23,'纪录片');
-INSERT INTO type_dict(id,show_name) values(24,'黑色电影');
+INSERT INTO category_dict(id,show_name) values(99,'全部');
+INSERT INTO category_dict(id,show_name) values(1,'爱情');
+INSERT INTO category_dict(id,show_name) values(2,'喜剧');
+INSERT INTO category_dict(id,show_name) values(3,'动画');
+INSERT INTO category_dict(id,show_name) values(4,'剧情');
+INSERT INTO category_dict(id,show_name) values(5,'恐怖');
+INSERT INTO category_dict(id,show_name) values(6,'惊悚');
+INSERT INTO category_dict(id,show_name) values(7,'科幻');
+INSERT INTO category_dict(id,show_name) values(8,'动作');
+INSERT INTO category_dict(id,show_name) values(9,'悬疑');
+INSERT INTO category_dict(id,show_name) values(10,'犯罪');
+INSERT INTO category_dict(id,show_name) values(11,'冒险');
+INSERT INTO category_dict(id,show_name) values(12,'战争');
+INSERT INTO category_dict(id,show_name) values(13,'奇幻');
+INSERT INTO category_dict(id,show_name) values(14,'运动');
+INSERT INTO category_dict(id,show_name) values(15,'家庭');
+INSERT INTO category_dict(id,show_name) values(16,'古装');
+INSERT INTO category_dict(id,show_name) values(17,'武侠');
+INSERT INTO category_dict(id,show_name) values(18,'西部');
+INSERT INTO category_dict(id,show_name) values(19,'历史');
+INSERT INTO category_dict(id,show_name) values(20,'传记');
+INSERT INTO category_dict(id,show_name) values(21,'歌舞');
+INSERT INTO category_dict(id,show_name) values(22,'短片');
+INSERT INTO category_dict(id,show_name) values(23,'纪录片');
+INSERT INTO category_dict(id,show_name) values(24,'黑色电影');
 
 
 
@@ -140,7 +140,7 @@ CREATE TABLE film(
   film_preSaleNum INT COMMENT '影片预售数量',
   film_box_office INT COMMENT '影片票房：每日更新，以万为单位',
   film_source INT COMMENT '影片片源，参照片源字典表',
-  film_types VARCHAR(50) COMMENT '影片分类，参照分类表,多个分类以#分割',
+  film_cats VARCHAR(50) COMMENT '影片分类，参照分类表,多个分类以#分割',
   film_area INT COMMENT '影片区域，参照区域表',
   film_date INT COMMENT '影片上映年代，参照年代表',
   film_time TIMESTAMP COMMENT '影片上映时间',
@@ -151,7 +151,7 @@ CREATE TABLE film(
 -- ----------------------------
 -- Records of film
 -- ----------------------------
-INSERT INTO film(id,film_name,film_source,film_type,film_types,film_area,film_date,film_time,film_preSaleNum,film_box_office,film_score,film_status,img_address)
+INSERT INTO film(id,film_name,film_source,film_type,film_cats,film_area,film_date,film_time,film_preSaleNum,film_box_office,film_score,film_status,img_address)
 			values(2,'我不是药神',1,0,'#2#4#22#',1,13,'2018-07-05',231432491,309600,'9.7',1,'films/238e2dc36beae55a71cabfc14069fe78236351.jpg');
 
 
@@ -418,7 +418,7 @@ CREATE TABLE hall_film_info(
   film_id INT COMMENT '电影编号',
   film_name VARCHAR(50) COMMENT '电影名称',
   film_length VARCHAR(50) COMMENT '电影时长',
-  film_types VARCHAR(200) COMMENT '电影类型',
+  film_cats VARCHAR(200) COMMENT '电影类型',
   film_language VARCHAR(50) COMMENT '电影语言',
   actors VARCHAR(200) COMMENT '演员列表',
   img_address VARCHAR(500) COMMENT '图片地址'
@@ -428,10 +428,10 @@ CREATE TABLE hall_film_info(
 -- ----------------------------
 -- Records of hall_film_info
 -- ----------------------------
-INSERT INTO hall_film_info(id,film_id,film_name,film_length,film_types,actors,film_language,img_address)
+INSERT INTO hall_film_info(id,film_id,film_name,film_length,film_cats,actors,film_language,img_address)
 	VALUES(1,2,'我不是药神',117,'喜剧,剧情','程勇,曹斌,吕受益,刘思慧','国语2D','films/238e2dc36beae55a71cabfc14069fe78236351.jpg');
 
-INSERT INTO hall_film_info(id,film_id,film_name,film_length,film_types,actors,film_language,img_address)
+INSERT INTO hall_film_info(id,film_id,film_name,film_length,film_cats,actors,film_language,img_address)
 	VALUES(2,3,'爱情公寓',123,'喜剧,动作,冒险','曾小贤,胡一菲,唐悠悠,张伟','国语2D','films/238e2dc36beae55a71cabfc14069fe78236351.jpg');
 
 	-- ----------------------------
