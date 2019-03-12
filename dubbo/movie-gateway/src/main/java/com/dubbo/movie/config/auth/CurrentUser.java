@@ -1,5 +1,7 @@
 package com.dubbo.movie.config.auth;
 
+import com.dubbo.movie.vo.user.UserInfoModel;
+
 /**
  * 获取当前对象的工具类
  */
@@ -18,8 +20,8 @@ public class CurrentUser {
 //    public static void saveUserInfo(UserInfoModel userInfoModel){
 //        threadLocal.set(userInfoModel);
 //    }
-
-    // 将用户信息取出
+//
+//     将用户信息取出
 //    public static UserInfoModel getCurrentUser(){
 //        return threadLocal.get();
 //    }

@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 对客户端请求的jwt token验证过滤器
@@ -36,6 +37,9 @@ public class AuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
+            System.out.println("拦截到了 auth 请求");
+
+            //chain.doFilter方法将请求发给了过滤器链上的下一个filter，如果没有，就是你请求的资源了。
             chain.doFilter(request, response);
             return;
         }
@@ -45,17 +49,25 @@ public class AuthFilter extends OncePerRequestFilter {
 
         // /user/register
         String[] ignoreUrls = ignoreUrl.split(",");
+
+
         for(int i=0;i<ignoreUrls.length;i++){
             if(request.getServletPath().startsWith(ignoreUrls[i])){
+
+                //如果设置忽略，则直接请求该路径
                 chain.doFilter(request, response);
                 return;
             }
         }
 
+
+        //这里由前端把 Authorization字段 加入请求头
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
+
+            System.out.println(requestHeader);
 
             // 通过Token获取userID，并且将之存入Threadlocal，以便后续业务调用
             String userId = jwtTokenUtil.getUsernameFromToken(authToken);

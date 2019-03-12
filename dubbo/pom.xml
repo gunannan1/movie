@@ -18,13 +18,14 @@
 
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <modules>
         <module>movie-common</module>
         <module>movie-gateway</module>
         <module>movie-user</module>
+        <module>movie-film</module>
 
     </modules>
 

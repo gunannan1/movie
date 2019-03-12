@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>movie-gateway</artifactId>
+    <artifactId>movie-film</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>movie-gateway</name>
-    <description>网关模块</description>
+    <name>movie-film</name>
+    <description>影片模块</description>
 
     <properties>
         <java.version>8</java.version>
@@ -30,25 +30,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-            <version>2.0.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-            <version>2.0.0.RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>com.dubbo</groupId>
             <artifactId>movie-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
 
     </dependencies>
 

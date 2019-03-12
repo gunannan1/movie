@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: movie-user
+  dubbo:
+    server: true
+    registry: zookeeper://localhost:2181
+    protocol:
+      name: dubbo
+      port: 20881
+  datasource:
+    url: jdbc:mysql://localhost:3306/movie?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: com.dubbo.movie.model
+
+
+
