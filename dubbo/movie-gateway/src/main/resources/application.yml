@@ -14,6 +14,7 @@ spring:
   type: com.alibaba.druid.pool.DruidDataSource
 
 
+
 jwt:
  header: Authorization   #http请求头所需要的字段
  secret: mySecret        #jwt秘钥

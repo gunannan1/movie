@@ -21,11 +21,11 @@ public interface FilmServiceApi {
 //    FilmVO getHotFilms(int nowPage,int nums ...);
 
     // 获取票房排行榜
-    List<FilmInfo> getBoxRanking();
+    List<FilmInformationVO> getBoxRanking();
     // 获取人气排行榜
-    List<FilmInfo> getExpectRanking();
+    List<FilmInformationVO> getExpectRanking();
     // 获取Top100
-    List<FilmInfo> getTop();
+    List<FilmInformationVO> getTop();
 
     // ==== 获取影片条件接口
     // 分类条件

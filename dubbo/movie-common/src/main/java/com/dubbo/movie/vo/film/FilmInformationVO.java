@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 电影信息
  */
 @Data
-public class FilmInfo implements Serializable {
+public class FilmInformationVO implements Serializable {
 
     private String filmId;
     private int filmType;

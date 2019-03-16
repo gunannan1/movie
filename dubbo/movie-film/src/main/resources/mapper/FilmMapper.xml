@@ -49,10 +49,10 @@
             film.`film_box_office` AS totalBox,
             (SELECT GROUP_CONCAT(show_name SEPARATOR ',') FROM category_dict t
               WHERE FIND_IN_SET (t.id,
-                (SELECT REPLACE(TRIM(BOTH '#' FROM film_cats),'#',',') FROM film_t t WHERE t.id=film.id))) AS info01,
-            CONCAT((SELECT show_name FROM source_dict t WHERE t.id=film.uuid),' / ',info.`film_length`,'分钟') info02,
+                (SELECT REPLACE(TRIM(BOTH '#' FROM film_cats),'#',',') FROM film t WHERE t.id=film.id))) AS info01,
+            CONCAT((SELECT show_name FROM source_dict t WHERE t.id=film.id),' / ',info.`film_length`,'分钟') info02,
             CONCAT(film.`film_time`,(SELECT show_name FROM source_dict t WHERE t.id=film.id),'上映') info03
-      FROM mooc_film_t film,mooc_film_info_t info
+      FROM film film,film_info info
       WHERE film.`id` = info.`film_id`
       AND film.`id` = #{id}
     </select>
