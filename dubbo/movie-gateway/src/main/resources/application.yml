@@ -21,7 +21,7 @@ jwt:
  expiration: 604800      #7天 单位:秒
  auth-path: auth         #认证请求的路径
  md5-key: randomKey      #md5加密混淆key
- ignore-url: /user/register,/user/check,/film   #忽略列表
+ ignore-url: /user/register,/user/check,/film,/cinema   #忽略列表
 
 rest:
  auth-open: true #jwt鉴权机制是否开启(true或者false)

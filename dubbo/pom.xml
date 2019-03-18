@@ -27,6 +27,8 @@
         <module>movie-user</module>
         <module>movie-film</module>
         <module>movie-cinema</module>
+        <module>movie-order</module>
+        <module>movie-pay</module>
 
     </modules>
 

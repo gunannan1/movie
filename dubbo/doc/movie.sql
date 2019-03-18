@@ -305,6 +305,38 @@ INSERT INTO brand_dict(id,show_name) VALUES(28,'搜秀影城');
 INSERT INTO brand_dict(id,show_name) VALUES(29,'横店电影城');
 
 
+-- ----------------------------
+-- Table structure for area_dict
+-- ----------------------------
+DROP TABLE IF EXISTS `area_dict`;
+CREATE TABLE area_dict(
+  id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键编号',
+  show_name VARCHAR(100) COMMENT '显示名称'
+) COMMENT '地域信息表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+
+-- ----------------------------
+-- Records of area_dict
+-- ----------------------------
+INSERT INTO area_dict(id,show_name) VALUES(99,'全部');
+INSERT INTO area_dict(id,show_name) VALUES(1,'朝阳区');
+INSERT INTO area_dict(id,show_name) VALUES(2,'海淀区');
+INSERT INTO area_dict(id,show_name) VALUES(3,'丰台区');
+INSERT INTO area_dict(id,show_name) VALUES(4,'大兴区');
+INSERT INTO area_dict(id,show_name) VALUES(5,'东城区');
+INSERT INTO area_dict(id,show_name) VALUES(6,'西城区');
+INSERT INTO area_dict(id,show_name) VALUES(7,'通州区');
+INSERT INTO area_dict(id,show_name) VALUES(8,'房山区');
+INSERT INTO area_dict(id,show_name) VALUES(9,'昌平区');
+INSERT INTO area_dict(id,show_name) VALUES(10,'顺义区');
+INSERT INTO area_dict(id,show_name) VALUES(11,'怀柔区');
+INSERT INTO area_dict(id,show_name) VALUES(12,'门头沟');
+INSERT INTO area_dict(id,show_name) VALUES(13,'石景山区');
+INSERT INTO area_dict(id,show_name) VALUES(14,'密云区');
+INSERT INTO area_dict(id,show_name) VALUES(15,'平谷区');
+INSERT INTO area_dict(id,show_name) VALUES(16,'延庆区');
+
+
 
 -- ----------------------------
 -- Table structure for hall_dict
@@ -385,7 +417,9 @@ CREATE TABLE screening(
   end_time VARCHAR(50) COMMENT '结束时间',
   hall_id INT COMMENT '放映厅类型编号',
   hall_name VARCHAR(200) COMMENT '放映厅名称',
-  price INT COMMENT '票价'
+  price INT COMMENT '票价',
+  seat_count INT(10) DEFAULT 500 COMMENT '剩余座位数量，测试用',
+  version INT(10) DEFAULT 0 COMMENT '乐观锁版本号，测试用'
 ) COMMENT '放映场次表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 

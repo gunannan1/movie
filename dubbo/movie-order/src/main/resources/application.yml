@@ -1,14 +1,14 @@
 server:
-  port: 8083
+  port: 8084
 spring:
   application:
-    name: movie-cinema
+    name: movie-order
   dubbo:
     server: true
     registry: zookeeper://localhost:2181
     protocol:
       name: dubbo
-      port: 20883
+      port: 20884
       accepts: 10     #服务提供方最大可接受连接数，这里限制服务器端接受的连接不能超过10个。这里限制的是reference，最大10个
   datasource:
     url: jdbc:mysql://localhost:3306/movie?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
