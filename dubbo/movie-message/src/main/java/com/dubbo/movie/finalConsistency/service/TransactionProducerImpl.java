@@ -12,6 +12,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadFactory;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @Component
-public class TransactionProducerImpl implements InitializingBean, TransactionProducer {
+public class TransactionProducerImpl implements TransactionProducer {
 
 
     private TransactionMQProducer producer;
@@ -28,6 +29,7 @@ public class TransactionProducerImpl implements InitializingBean, TransactionPro
 
     @Autowired
     TransactionListenerImpl transactionListenerImpl;
+
 
     private TransactionProducerImpl() {
         this.producer = new TransactionMQProducer(MQConfig.PRODUCER_GROUP_NAME);
@@ -43,10 +45,15 @@ public class TransactionProducerImpl implements InitializingBean, TransactionPro
         });
         this.producer.setExecutorService(executorService);
         this.producer.setNamesrvAddr(MQConfig.NAMESERVER);
+
     }
 
 
-    @Override
+    /**
+     * Autowired注入晚于构造器初始化，所以需要这个方法来设置transactionListenerImpl
+     * @throws Exception
+     */
+    @PostConstruct
     public void afterPropertiesSet() throws Exception {
         this.producer.setTransactionListener(transactionListenerImpl);
         start();
