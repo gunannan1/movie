@@ -23,5 +23,11 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   typeAliasesPackage: com.dubbo.movie.model
 
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image.height: 80
+  thumb-image.width: 80
+  tracker-list: 10.0.0.43:22122
 
 

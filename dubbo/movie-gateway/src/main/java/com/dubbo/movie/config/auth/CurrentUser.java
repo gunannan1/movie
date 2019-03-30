@@ -8,6 +8,7 @@ import com.dubbo.movie.vo.user.UserInfoModel;
 public class CurrentUser {
 
     // 线程绑定的存储空间
+    // hystrix会出现线程切换，不能用普通的threadlocal,InheritableThreadLocal在线程切换时可以保存数据
     private static final InheritableThreadLocal<String> threadLocal = new InheritableThreadLocal<>();
     public static void saveUserId(String userId){
         threadLocal.set(userId);

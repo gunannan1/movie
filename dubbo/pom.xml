@@ -29,6 +29,9 @@
         <module>movie-cinema</module>
         <module>movie-order</module>
         <module>movie-pay</module>
+        <module>movie-message</module>
+        <module>movie-pay-user-test</module>
+        <module>movie-pay-platform-test</module>
 
     </modules>
 
@@ -81,7 +84,6 @@
             <version>2.0.0</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
@@ -103,6 +105,24 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security.oauth</groupId>-->
+            <!--<artifactId>spring-security-oauth2</artifactId>-->
+            <!--<version>2.3.4.RELEASE</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

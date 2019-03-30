@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.dubbo.movie.api.cinema.CinemaServiceAPI;
 import com.dubbo.movie.api.order.OrderServiceAPI;
 import com.dubbo.movie.dao.OrderInfoMapper;
+import com.dubbo.movie.enumeration.OrderStatus;
 import com.dubbo.movie.model.OrderInfo;
 import com.dubbo.movie.utils.FileConvertUtil;
 import com.dubbo.movie.utils.UUIDUtil;
@@ -26,7 +27,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "default")
+@Service(interfaceClass = OrderServiceAPI.class)
 public class OrderServiceImpl implements OrderServiceAPI {
 
     @Autowired
@@ -77,6 +78,7 @@ public class OrderServiceImpl implements OrderServiceAPI {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.eq("field_id",fieldId);
 
+        //找到所有该场次的订单
         List<OrderInfo> list = orderInfoMapper.selectList(entityWrapper);
         String[] seatArrs = seats.split(",");
         // 有任何一个编号匹配上，则直接返回失败
@@ -211,7 +213,7 @@ public class OrderServiceImpl implements OrderServiceAPI {
     public boolean paySuccess(String orderId) {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setId(orderId);
-        orderInfo.setOrderStatus(1);
+        orderInfo.setOrderStatus(OrderStatus.PAID.getCode());
 
         Integer integer = orderInfoMapper.updateById(orderInfo);
         if(integer>=1){
@@ -225,7 +227,7 @@ public class OrderServiceImpl implements OrderServiceAPI {
     public boolean payFail(String orderId) {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setId(orderId);
-        orderInfo.setOrderStatus(2);
+        orderInfo.setOrderStatus(OrderStatus.PAY_FAILED.getCode());
 
         Integer integer = orderInfoMapper.updateById(orderInfo);
         if(integer>=1){
@@ -234,4 +236,19 @@ public class OrderServiceImpl implements OrderServiceAPI {
             return false;
         }
     }
+
+    @Override
+    public boolean updateStatus(String orderId,Integer status){
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setId(orderId);
+        orderInfo.setOrderStatus(status);
+        Integer integer = orderInfoMapper.updateById(orderInfo);
+        if(integer>=1){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }

@@ -16,6 +16,8 @@ import com.dubbo.movie.alipay.service.AlipayTradeService;
 import com.dubbo.movie.alipay.service.impl.AlipayMonitorServiceImpl;
 import com.dubbo.movie.alipay.service.impl.AlipayTradeServiceImpl;
 import com.dubbo.movie.alipay.service.impl.AlipayTradeWithHBServiceImpl;
+import com.dubbo.movie.alipay.utils.FastDFSClient;
+import com.dubbo.movie.alipay.utils.FastDFSFileUtil;
 import com.dubbo.movie.alipay.utils.ZxingUtils;
 import com.dubbo.movie.api.alipay.AliPayServiceAPI;
 import com.dubbo.movie.api.order.OrderServiceAPI;
@@ -26,14 +28,14 @@ import com.dubbo.movie.vo.order.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 需要文件服务器上传二维码，待完善
- */
+
 @Slf4j
 @Component
 @Service(interfaceClass = AliPayServiceAPI.class,
@@ -42,6 +44,9 @@ public class DefaultAlipayServiceImpl implements AliPayServiceAPI {
 
     @Reference(interfaceClass = OrderServiceAPI.class,check = false)
     private OrderServiceAPI orderServiceAPI;
+
+    @Autowired
+    FastDFSClient fastDFSClient;
 
 
     // 支付宝当面付2.0服务
@@ -125,7 +130,7 @@ public class DefaultAlipayServiceImpl implements AliPayServiceAPI {
             case SUCCESS:
                 log.info("查询返回该订单支付成功: )");
 
-                // 当订单支付成功状态时，修改订单状态为1
+                // 当订单支付成功状态时，修改订单状态为
                 flag = orderServiceAPI.paySuccess(orderId);
 
                 break;
@@ -215,15 +220,21 @@ public class DefaultAlipayServiceImpl implements AliPayServiceAPI {
                 AlipayTradePrecreateResponse response = result.getResponse();
 
                 // 需要修改为运行机器上的路径
-                filePath = String.format("/var/ftp/pub/temp/qr-%s.png",
+                filePath = String.format("/Users/gunannan/IdeaProjects/movie/dubbo/qr/qr-%s.png",
                         response.getOutTradeNo());
                 String fileName = String.format("qr-%s.png",response.getOutTradeNo());
                 log.info("filePath:" + filePath);
                 File qrCodeImge = ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
 
-//                boolean isSuccess = FileConvertUtil.uploadFile(fileName,qrCodeImge);
-                boolean isSuccess=true;
-                if(!isSuccess){
+                MultipartFile qrCodeFile = FastDFSFileUtil.fileToMultipart(filePath);
+
+                String qrCodeUrl = "";
+                try {
+                    qrCodeUrl = fastDFSClient.uploadQRCode(qrCodeFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(qrCodeUrl== null|| qrCodeUrl.equals("")){
                     filePath = "";
                     log.error("二维码上传失败");
                 }

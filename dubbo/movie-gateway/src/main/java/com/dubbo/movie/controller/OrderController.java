@@ -41,6 +41,7 @@ public class OrderController {
 
 
     public ResponseVO error(Integer fieldId, String soldSeats, String seatsName){
+        System.out.println("熔断降级");
         return ResponseVO.serviceFail("抱歉，下单的人太多了，请稍后重试");
     }
 
@@ -64,7 +65,13 @@ public class OrderController {
     @RequestMapping(value = "buyTickets",method = RequestMethod.POST)
     public ResponseVO buyTickets(Integer fieldId,String soldSeats,String seatsName){
 
+        //超时测试
+//            Thread.sleep(5000);
+
+
+        //令牌桶算法限流
         if(tokenBucket.getToken()){
+
             // 验证售出的票是否为真
             boolean isTrue = orderServiceAPI.isTrueSeats(fieldId+"",soldSeats);
 

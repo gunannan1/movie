@@ -27,4 +27,8 @@ public interface OrderServiceAPI {
 
     boolean payFail(String orderId);
 
+    boolean updateStatus(String orderId,Integer status);
+
+
+
 }

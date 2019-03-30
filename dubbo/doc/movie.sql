@@ -473,7 +473,7 @@ INSERT INTO hall_film_info(id,film_id,film_name,film_length,film_cats,actors,fil
 -- ----------------------------
 DROP TABLE IF EXISTS `order_info`;
 CREATE TABLE order_info(
-  id VARCHAR(100) COMMENT '主键编号',
+  id VARCHAR(100) PRIMARY KEY COMMENT '主键编号',
   cinema_id INT COMMENT '影院编号',
   field_id INT COMMENT '放映场次编号',
   film_id INT COMMENT '电影编号',
@@ -491,8 +491,70 @@ CREATE TABLE order_info(
 -- Records of order_info
 -- ----------------------------
 INSERT INTO order_info(id,cinema_id,field_id,film_id,seats_ids,seats_name,film_price,order_price,order_user)
-	VALUES('415sdf58ew12ds5fe1',1,1,2,'1,2,3,4','第一排1座,第一排2座,第一排3座,第一排4座',63.2,126.4,1);
+	VALUES('415sdf58ew12ds5fe1',1,1,2,'1,2,3,4','第一排1座,第一排2座,第一排3座,第一排4座',63.2,126.4,2);
 
+
+-- ----------------------------
+-- Table structure for user_balance
+-- ----------------------------
+
+DROP TABLE IF EXISTS `user_balance`;
+CREATE TABLE user_balance(
+   id INT PRIMARY KEY COMMENT '用户id',
+   current_balance DOUBLE COMMENT '当前账户余额',
+   version INT COMMENT '版本号',
+   begin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+
+) COMMENT '用户账户表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+
+-- ----------------------------
+-- Records of user_balance
+-- ----------------------------
+
+INSERT INTO user_balance(id,current_balance,version) VALUES(2,50000,0);
+
+
+
+-- ----------------------------
+-- Table structure for platform_balance
+-- ----------------------------
+
+DROP TABLE IF EXISTS `platform_balance`;
+CREATE TABLE platform_balance(
+   id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+   platform_name VARCHAR(50) COMMENT '平台名称',
+   current_balance DOUBLE COMMENT '当前账户余额',
+   version INT COMMENT '版本号',
+   begin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+
+) COMMENT '平台账户表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+
+-- ----------------------------
+-- Records of platform_balance
+-- ----------------------------
+
+INSERT INTO platform_balance(platform_name,current_balance,version) VALUES("猫眼电影",50000,0);
+
+-- ----------------------------
+-- Table structure for transaction_message
+-- ----------------------------
+
+DROP TABLE IF EXISTS `transaction_message`;
+CREATE TABLE transaction_message(
+   id VARCHAR(100) PRIMARY KEY COMMENT '主键编号',
+   message VARCHAR(200) COMMENT '消息内容',
+   try_count INT COMMENT '尝试次数',
+   status INT COMMENT '消息状态',
+   topic VARCHAR(100) COMMENT '消息主题',
+   next_retry TIMESTAMP COMMENT '下次尝试时间',
+   begin_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+
+) COMMENT '事务消息表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 
 

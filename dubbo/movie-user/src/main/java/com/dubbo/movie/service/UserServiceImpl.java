@@ -3,7 +3,7 @@ package com.dubbo.movie.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.dubbo.movie.api.user.UserAPI;
-import com.dubbo.movie.dao.UserDao;
+import com.dubbo.movie.dao.UserMapper;
 import com.dubbo.movie.model.User;
 import com.dubbo.movie.utils.MD5Util;
 import com.dubbo.movie.vo.user.UserInfoModel;
@@ -18,7 +18,7 @@ import java.util.Date;
 public class UserServiceImpl implements UserAPI {
 
     @Autowired
-    private UserDao userDao;
+    private UserMapper userDao;
 
 
     /**
